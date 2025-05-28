@@ -1,0 +1,19 @@
+{
+    "robot.initialize": "Αρχικοποίηση %1",
+    "robot.onBluetoothConnected": "όταν συνδέεται Bluetooth",
+    "robot.onBluetoothDisconnected": "όταν αποσυνδέεται Bluetooth",
+    "robot.onDataReceived": "Σύνδεση ρομπότ",
+    "robot.showFaceBarGraph": "εμφάνιση γραφήματος στηλών για αξία Face-App %1",
+    "robot.getFaceValue": "αξία Face-App %1",
+    "robot.getControlValue": "αξία Control %1",
+    "robot.face.yaw": "Εκτροπή",
+    "robot.face.pitch": "Κλίση",
+    "robot.face.mouth": "Στόμα",
+    "robot.face.leftEye": "Αριστερό μάτι",
+    "robot.face.rightEye": "Δεξί μάτι",
+    "robot.face.roll": "Κύλιση",
+    "robot.face.smile": "Χαμόγελο",
+    "robot.face.visible": "Πρόσωπο ορατό",
+    "robot.control.joystickX": "Joystick X",
+    "robot.control.steering": "Τιμόνι"
+}

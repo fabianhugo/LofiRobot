@@ -1,0 +1,19 @@
+{
+    "robot.initialize": "Initialize %1",
+    "robot.onBluetoothConnected": "on Bluetooth connected",
+    "robot.onBluetoothDisconnected": "on Bluetooth disconnected",
+    "robot.onDataReceived": "Robot connection",
+    "robot.showFaceBarGraph": "show bar graph for Face-App value %1",
+    "robot.getFaceValue": "Face-App value %1",
+    "robot.getControlValue": "Control value %1",
+    "robot.face.yaw": "Yaw",
+    "robot.face.pitch": "Pitch",
+    "robot.face.mouth": "Mouth",
+    "robot.face.leftEye": "Left Eye",
+    "robot.face.rightEye": "Right Eye",
+    "robot.face.roll": "Roll",
+    "robot.face.smile": "Smile",
+    "robot.face.visible": "Face Visible",
+    "robot.control.joystickX": "Joystick X",
+    "robot.control.steering": "Steering"
+}
