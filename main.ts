@@ -1,124 +1,49 @@
 /**
- * LOFI ROBOT Bluetooth Extension
+ * LOFI ROBOT Bluetooth
  */
-//% weight=20 color=#ff6900 icon="\uf278"
+//% weight=20 color=#ff6900 icon="\uf118"
 
 enum RobotAppType {
     //% block="Face-App"
-    //% block.loc.de="Face-App"
-    //% block.loc.fr="Face-App"
-    //% block.loc.es="Face-App"
-    //% block.loc.it="Face-App"
-    //% block.loc.el="Face-App"
     FaceApp,
     //% block="Control"
-    //% block.loc.de="Control"
-    //% block.loc.fr="Control"
-    //% block.loc.es="Control"
-    //% block.loc.it="Control"
-    //% block.loc.el="Control"
     Control
 }
 
 enum FaceValues {
     //% block="X"
-    //% block.loc.de="X"
-    //% block.loc.fr="X"
-    //% block.loc.es="X"
-    //% block.loc.it="X"
-    //% block.loc.el="X"
     X,
     //% block="Y"
-    //% block.loc.de="Y"
-    //% block.loc.fr="Y"
-    //% block.loc.es="Y"
-    //% block.loc.it="Y"
-    //% block.loc.el="Y"
     Y,
     //% block="Z"
-    //% block.loc.de="Z"
-    //% block.loc.fr="Z"
-    //% block.loc.es="Z"
-    //% block.loc.it="Z"
-    //% block.loc.el="Z"
     Z,
     //% block="Yaw"
-    //% block.loc.de="Gieren"
-    //% block.loc.fr="Lacet"
-    //% block.loc.es="Guiñada"
-    //% block.loc.it="Imbardata"
-    //% block.loc.el="Εκτροπή"
     Yaw,
     //% block="Pitch"
-    //% block.loc.de="Nicken"
-    //% block.loc.fr="Tangage"
-    //% block.loc.es="Cabeceo"
-    //% block.loc.it="Beccheggio"
-    //% block.loc.el="Κλίση"
     Pitch,
     //% block="Mouth"
-    //% block.loc.de="Mund"
-    //% block.loc.fr="Bouche"
-    //% block.loc.es="Boca"
-    //% block.loc.it="Bocca"
-    //% block.loc.el="Στόμα"
     Mouth,
     //% block="Left Eye"
-    //% block.loc.de="Linkes Auge"
-    //% block.loc.fr="Œil gauche"
-    //% block.loc.es="Ojo izquierdo"
-    //% block.loc.it="Occhio sinistro"
-    //% block.loc.el="Αριστερό μάτι"
     LeftEye,
     //% block="Right Eye"
-    //% block.loc.de="Rechtes Auge"
-    //% block.loc.fr="Œil droit"
-    //% block.loc.es="Ojo derecho"
-    //% block.loc.it="Occhio destro"
-    //% block.loc.el="Δεξί μάτι"
     RightEye,
     //% block="Roll"
-    //% block.loc.de="Rollen"
-    //% block.loc.fr="Roulis"
-    //% block.loc.es="Balanceo"
-    //% block.loc.it="Rollio"
-    //% block.loc.el="Κύλιση"
     Roll,
     //% block="Smile"
-    //% block.loc.de="Lächeln"
-    //% block.loc.fr="Sourire"
-    //% block.loc.es="Sonrisa"
-    //% block.loc.it="Sorriso"
-    //% block.loc.el="Χαμόγελο"
     Smile,
-    //% block="Face Visible"
-    //% block.loc.de="Gesicht sichtbar"
-    //% block.loc.fr="Visage visible"
-    //% block.loc.es="Cara visible"
-    //% block.loc.it="Viso visibile"
-    //% block.loc.el="Πρόσωπο ορατό"
+    //% block="Face-Visible"
     FaceVisible
 }
 
 enum ControlValues {
     //% block="Joystick X"
-    //% block.loc.de="Joystick X"
-    //% block.loc.fr="Joystick X"
-    //% block.loc.es="Joystick X"
-    //% block.loc.it="Joystick X"
-    //% block.loc.el="Joystick X"
     XValue,
-    //% block="Slider"
-    //% block.loc.de="Slider"
-    //% block.loc.fr="Slider"
-    //% block.loc.es="Slider"
-    //% block.loc.it="Slider"
-    //% block.loc.el="Slider"
+    //% block="Steuerung"
     Control
 }
 
 namespace LofiRobot {
-    // Face-App Variables
+    // Face-App Variablen
     let face_x = 0
     let face_y = 0
     let face_z = 0
@@ -132,7 +57,7 @@ namespace LofiRobot {
     let face_visible = 0
     let face_app_enabled = false
 
-    // Control Variables
+    // Control Variablen
     let control_x_value = 0
     let control_command = ""
     let control_value = 0
@@ -144,15 +69,10 @@ namespace LofiRobot {
     let current_app_type: RobotAppType = null
 
     /**
-     * Initialize Bluetooth control for the selected app
-     * @param appType Choose the app (Face-App or Control)
+     * Initialisiere die Bluetooth-Steuerung für die ausgewählte App
+     * @param appType Wähle die App (Face-App oder Control)
      */
-    //% block="Initialize %appType"
-    //% block.loc.de="Initialisiere %appType"
-    //% block.loc.fr="Initialiser %appType"
-    //% block.loc.es="Inicializar %appType"
-    //% block.loc.it="Inizializza %appType"
-    //% block.loc.el="Αρχικοποίηση %appType"
+    //% block="Initialisiere %appType"
     //% weight=100
     export function initializeApp(appType: RobotAppType): void {
         if (!bluetoothStarted) {
@@ -163,64 +83,42 @@ namespace LofiRobot {
 
         if (appType === RobotAppType.FaceApp) {
             face_app_enabled = true
-            // Blink center LED 3 times
-            for (let i = 0; i < 3; i++) {
-                led.plot(2, 2)
-                basic.pause(200)
-                led.unplot(2, 2)
-                basic.pause(200)
-            }
+            basic.showString("F")
         } else if (appType === RobotAppType.Control) {
             control_app_enabled = true
-            // Blink center LED 3 times
-            for (let i = 0; i < 3; i++) {
-                led.plot(2, 2)
-                basic.pause(200)
-                led.unplot(2, 2)
-                basic.pause(200)
-            }
+            basic.showString("C")
         }
 
-        // Setup Bluetooth receive function if not already done
+        // Bluetooth-Empfangsfunktion einrichten, falls noch nicht geschehen
         setupBluetoothReceive()
     }
 
     /**
-     * Executed when Bluetooth data is received
-     * @param handler Code to be executed
+     * Wird ausgeführt, wenn Bluetooth-Daten empfangen werden
+     * @param handler Code, der ausgeführt werden soll
      */
-    //% block="on Bluetooth connected"
-    //% block.loc.de="wenn Bluetooth empfang"
-    //% block.loc.fr="quand Bluetooth connecté"
-    //% block.loc.es="cuando Bluetooth conectado"
-    //% block.loc.it="quando Bluetooth connesso"
-    //% block.loc.el="όταν συνδέεται Bluetooth"
+    //% block="wenn Bluetooth empfang"
     //% weight=90
     export function onBluetoothConnected(handler: () => void): void {
         bluetooth.onBluetoothConnected(handler)
     }
 
     /**
-     * Executed when a Bluetooth connection is disconnected
-     * @param handler Code to be executed
+     * Wird ausgeführt, wenn eine Bluetooth-Verbindung getrennt wurde
+     * @param handler Code, der ausgeführt werden soll
      */
-    //% block="on Bluetooth disconnected"
-    //% block.loc.de="wenn Bluetooth getrennt"
-    //% block.loc.fr="quand Bluetooth déconnecté"
-    //% block.loc.es="cuando Bluetooth desconectado"
-    //% block.loc.it="quando Bluetooth disconnesso"
-    //% block.loc.el="όταν αποσυνδέεται Bluetooth"
+    //% block="wenn Bluetooth getrennt"
     //% weight=80
     export function onBluetoothDisconnected(handler: () => void): void {
         bluetooth.onBluetoothDisconnected(handler)
     }
 
-    // Private function to setup Bluetooth receiving
+    // Private Funktion zur Einrichtung des Bluetooth-Empfangs
     function setupBluetoothReceive(): void {
         bluetooth.onUartDataReceived(serial.delimiters(Delimiters.NewLine), () => {
             receivedString = bluetooth.uartReadUntil(serial.delimiters(Delimiters.NewLine))
 
-            // For Face-App: Check if string has correct length and contains numbers
+            // Für Face-App: Prüfe ob String die richtige Länge hat und ob Zahlen vorhanden sind
             if (face_app_enabled && receivedString.length >= 19) {
                 let hasNumbers = parseInt(receivedString) >= 0
                 if (hasNumbers) {
@@ -229,7 +127,7 @@ namespace LofiRobot {
                 }
             }
 
-            // For Control: Check if string contains commands
+            // Für Control: Prüfe ob String Kommandos enthält
             if (control_app_enabled) {
                 if (receivedString === "up" ||
                     receivedString === "down" ||
@@ -252,7 +150,7 @@ namespace LofiRobot {
     }
 
     /**
-     * Processes Face-App data from received string
+     * Verarbeitet Face-App Daten aus dem empfangenen String
      */
     function processFaceAppData(): void {
         face_x = parseFloat(receivedString.substr(0, 2))
@@ -269,7 +167,7 @@ namespace LofiRobot {
     }
 
     /**
-     * Processes Control data from received string
+     * Verarbeitet Control-Daten aus dem empfangenen String
      */
     function processControlData(): void {
         control_command = receivedString
@@ -297,37 +195,27 @@ namespace LofiRobot {
     }
 
     /**
-     * Executed when data is received
-     * @param handler Code to be executed
+     * Wird ausgeführt, wenn Daten empfangen werden
+     * @param handler Code, der ausgeführt werden soll
      */
-    //% block="Robot connection"
-    //% block.loc.de="Roboterverbindung"
-    //% block.loc.fr="Connexion robot"
-    //% block.loc.es="Conexión robot"
-    //% block.loc.it="Connessione robot"
-    //% block.loc.el="Σύνδεση ρομφότ"
+    //% block="Roboterverbindung"
     //% weight=70
     export function onDataReceived(handler: () => void): void {
         data_received_handler = handler
     }
 
     /**
-     * Returns the current Control command
+     * Gibt das aktuelle Control-Kommando zurück
      */
     export function getControlCommand(): string {
         return control_command
     }
 
     /**
-     * Shows a bar graph with the selected Face-App value
-     * @param valueType Choose the Face-App value to display
+     * Zeigt ein Säulendiagramm mit dem gewählten Face-App Wert an
+     * @param valueType Wähle den Face-App Wert, der angezeigt werden soll
      */
-    //% block="show bar graph for Face-App value %valueType"
-    //% block.loc.de="zeige Säulendiagramm für Face-App Wert %valueType"
-    //% block.loc.fr="afficher graphique en barres pour valeur Face-App %valueType"
-    //% block.loc.es="mostrar gráfico de barras para valor Face-App %valueType"
-    //% block.loc.it="mostra grafico a barre per valore Face-App %valueType"
-    //% block.loc.el="εμφάνιση γραφήματος στηλών για αξία Face-App %valueType"
+    //% block="zeige Säulendiagramm für Face-App Wert %valueType"
     //% weight=55
     export function showFaceBarGraph(valueType: FaceValues): void {
         let valueToShow = 0
@@ -373,15 +261,10 @@ namespace LofiRobot {
     }
 
     /**
-     * Returns the selected Face-App value
-     * @param value Choose the value to return
+     * Gibt den ausgewählten Face-App Wert zurück
+     * @param value Wähle den Wert, der zurückgegeben werden soll
      */
-    //% block="Face-App value %value"
-    //% block.loc.de="Face-App Wert %value"
-    //% block.loc.fr="valeur Face-App %value"
-    //% block.loc.es="valor Face-App %value"
-    //% block.loc.it="valore Face-App %value"
-    //% block.loc.el="αξία Face-App %value"
+    //% block="Face-App Wert %value"
     //% weight=50
     export function getFaceValue(value: FaceValues): number {
         switch (value) {
@@ -413,15 +296,10 @@ namespace LofiRobot {
     }
 
     /**
-     * Returns the selected Control value
-     * @param value Choose the value to return
+     * Gibt den ausgewählten Control Wert zurück
+     * @param value Wähle den Wert, der zurückgegeben werden soll
      */
-    //% block="Control value %value"
-    //% block.loc.de="Control Wert %value"
-    //% block.loc.fr="valeur Control %value"
-    //% block.loc.es="valor Control %value"
-    //% block.loc.it="valore Control %value"
-    //% block.loc.el="αξία Control %value"
+    //% block="Control Wert %value"
     //% weight=45
     export function getControlValue(value: ControlValues): number {
         switch (value) {
@@ -433,5 +311,4 @@ namespace LofiRobot {
                 return 0
         }
     }
-}
 }
