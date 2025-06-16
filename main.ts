@@ -117,6 +117,7 @@ enum ControlValues {
     Control
 }
 
+//% weight=10 color=#FF4E00 icon="\uf0b2" block="LOFI Robot"
 namespace LofiRobot {
     // Face-App Variables
     let face_x = 0
